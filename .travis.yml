@@ -11,20 +11,5 @@ script:
   - ./test-docs.sh
 
 after_script:
-  - |
-    if [ "$TRAVIS_PULL_REQUEST" -eq "$TRAVIS_PULL_REQUEST" ] 2>/dev/null || [ "$TRAVIS_BRANCH" == "master" ] ; then
-      cabal install hpc-coveralls
-      hpc-coveralls --exclude-dir=test spec
-    fi
-
-
-notifications:
-  irc:
-    channels:
-      - "irc.freenode.org#servant"
-    template:
-      - "%{repository}#%{build_number} - %{commit} on %{branch} by %{author}: %{message}"
-      - "Build details: %{build_url} - Change view: %{compare_url}"
-    skip_join: true
-    on_success: change
-    on_failure: always
+  - cabal install hpc-coveralls
+  - hpc-coveralls --exclude-dir=test --display-report --dont-send spec
