@@ -12,4 +12,4 @@ script:
 
 after_script:
   - cabal install hpc-coveralls
-  - hpc-coveralls --exclude-dir=test --display-report --dont-send spec
+  - hpc-coveralls --exclude-dir=test --display-report --print-response spec
